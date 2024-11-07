@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Resume(models.Model):
+    file = models.FileField(upload_to='resumes/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)

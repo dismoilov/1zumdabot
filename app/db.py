@@ -14,8 +14,8 @@ async def save_resume_data(data):
                 branch_desire, post, experience, worked_before, phone, extra_phone, 
                 shirt_size, is_studying, education_type, languages, work_experience, 
                 programms_experience, about, salary, is_familiar_works_here, 
-                is_uzbek_citizen, is_working_now, from_vacancy_info, face_photo
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                is_uzbek_citizen, is_working_now, from_vacancy_info, face_photo, file
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
             (
                 data.get('first_name'), data.get('last_name'), data.get('middle_name'), data.get('gender'),
@@ -26,7 +26,8 @@ async def save_resume_data(data):
                 data.get('education_type'), ",".join(data.get('languages', [])), data.get('work_experience'),
                 ",".join(data.get('programms_experience', [])), data.get('about'), data.get('salary'),
                 data.get('is_familiar_works_here'), data.get('is_uzbek_citizen'), data.get('is_working_now'),
-                data.get('from_vacancy_info'), data.get('face_photo').replace('djangobot/media/', '')
+                data.get('from_vacancy_info'), data.get('face_photo').replace('djangobot/media/', ''),
+                f'resumes/{data.get("first_name")}_{data.get("last_name")}.docx'
             )
         )
         await db.commit()
